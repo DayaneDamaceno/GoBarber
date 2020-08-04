@@ -49,7 +49,7 @@ class UserController {
     }
 
     const { email, oldPassword } = req.body;
-    const { id } = req.userId;
+    const id = req.userId;
 
     const user = await User.findByPk(id);
 
