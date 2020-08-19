@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import './config/ReactotronConfig';
 
@@ -8,9 +8,9 @@ import history from './services/history';
 
 function App() {
   return (
-    <Router history={history}>
+    <BrowserRouter>
       <Routes />
-    </Router>
+    </BrowserRouter>
   );
 }
 
