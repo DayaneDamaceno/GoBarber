@@ -25,4 +25,4 @@ export function* signIn({ payload }) {
   history.push('/dashboard');
 }
 
-export default all([takeLatest('@auth/ADD_REQUEST', signIn)]);
+export default all([takeLatest('@auth/SIGN_IN_REQUEST', signIn)]);
