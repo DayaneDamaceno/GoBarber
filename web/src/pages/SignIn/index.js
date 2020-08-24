@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -11,6 +11,7 @@ import Input from '../../components/Input';
 import logo from '../../assets/gobarber_logo.svg';
 
 export default function SignIn() {
+  const loading = useSelector((state) => state.auth.loading);
   const dispatch = useDispatch();
 
   async function handleSubmit({ email, password }) {
@@ -46,7 +47,7 @@ export default function SignIn() {
         <Input type="email" name="email" placeholder="Email address" />
         <Input type="password" name="password" placeholder="Password secret" />
 
-        <button type="submit">Acessar</button>
+        <button type="submit">{loading ? 'Carregando...' : 'Acessar'}</button>
         <Link to="/register">Criar conta gratuita</Link>
       </Form>
     </>
