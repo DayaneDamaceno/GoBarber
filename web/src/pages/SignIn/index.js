@@ -1,14 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+
+import { signInRequest } from '../../store/modules/auth/actions';
 
 import Input from '../../components/Input';
 
 import logo from '../../assets/gobarber_logo.svg';
 
 export default function SignIn() {
-  async function handleSubmit(data) {
+  const dispatch = useDispatch();
+
+  async function handleSubmit({ email, password }) {
     try {
       const schema = Yup.object().shape({
         email: Yup.string()
@@ -16,11 +21,15 @@ export default function SignIn() {
           .required('A senha é obrigatória'),
         password: Yup.string().required('A senha é obrigatória'),
       });
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+      await schema.validate(
+        { email, password },
+        {
+          abortEarly: false,
+        }
+      );
       // Validation passed
-      console.tron.log(data);
+
+      dispatch(signInRequest(email, password));
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         // Validation failed
