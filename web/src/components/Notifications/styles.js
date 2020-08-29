@@ -1,27 +1,27 @@
 import styled, { css } from 'styled-components';
 import { lighten } from 'polished';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 export const Container = styled.div`
   position: relative;
+  z-index: 1;
 `;
 
 export const Badge = styled.button`
-  border: 0;
   background: none;
+  border: 0;
   position: relative;
   ${(props) =>
     props.hasUnread &&
     css`
       &::after {
         position: absolute;
-        right: -2px;
-        top: -2px;
-        width: 13px;
-        height: 13px;
-        background: red;
-        content: "${props.notifications >= 10 ? '' : props.notifications}";
-        font-size: 13px;
-        color: #fff;
+        right: 0;
+        top: 0;
+        width: 8px;
+        height: 8px;
+        background: #ff892e;
+        content: '';
         border-radius: 50%;
       }
     `}
@@ -32,13 +32,12 @@ export const NotificationList = styled.div`
   width: 260px;
   left: calc(50% - 130px);
   top: calc(100% + 30px);
-  background: rgba(0, 0, 0, 0.8);
-  z-index:1;
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 4px;
   padding: 15px 5px;
-  display:${(props) => (props.visible ? 'block' : 'none')}
+  display: ${(props) => (props.visible ? 'block' : 'none')};
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     left: calc(50% - 20px);
     top: -20px;
@@ -46,47 +45,13 @@ export const NotificationList = styled.div`
     height: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom: 20px solid rgba(0, 0, 0, 0.8);
+    border-bottom: 20px solid rgba(0, 0, 0, 0.6);
   }
 `;
 
-export const Scroll = styled.div`
+export const Scroll = styled(PerfectScrollbar)`
   max-height: 260px;
-  overflow: auto;
   padding: 5px 15px;
-  & {
-    ::-webkit-scrollbar-track {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 5px;
-    }
-    ::-webkit-scrollbar {
-      width: 6px;
-      border-radius: 5px;
-      background: rgba(255, 255, 255, 0.1);
-    }
-    ::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background: rgba(0, 0, 0, 0.6);
-    }
-  }
-  span {
-    color: gray;
-    color: #eee;
-    font-size: 1.4rem;
-  }
-  div:first-child {
-    top: -90px;
-    display: block;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: flex-end;
-    button {
-      font-size: 1.2rem;
-      border: 0;
-      background: none;
-      color: #fff;
-    }
-  }
 `;
 
 export const Notification = styled.div`
@@ -97,17 +62,17 @@ export const Notification = styled.div`
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
   p {
-    font-size: 1.3rem;
+    font-size: 13px;
     line-height: 18px;
   }
   time {
-    font-size: 1.2rem;
-    opacity: 0.6;
     display: block;
+    font-size: 12px;
+    opacity: 0.6;
     margin-bottom: 5px;
   }
   button {
-    font-size: 1.2rem;
+    font-size: 12px;
     border: 0;
     background: none;
     color: ${lighten(0.2, '#7159c1')};
@@ -118,9 +83,9 @@ export const Notification = styled.div`
       &::after {
         content: '';
         display: inline-block;
-        height: 7px;
-        width: 7px;
-        background: red;
+        width: 8px;
+        height: 8px;
+        background: #ff892e;
         border-radius: 50%;
         margin-left: 10px;
       }

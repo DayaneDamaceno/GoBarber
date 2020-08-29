@@ -7,15 +7,15 @@ export const Container = styled.div`
   flex-direction: column;
   header {
     display: flex;
-    align-self: center;
     align-items: center;
+    align-self: center;
     button {
       border: 0;
       background: none;
     }
     strong {
       color: #fff;
-      font-size: 2.4rem;
+      font-size: 24px;
       margin: 0 15px;
     }
   }
@@ -35,7 +35,7 @@ export const Time = styled.li`
   strong {
     display: block;
     color: ${(props) => (props.available ? '#999' : '#7159c1')};
-    font-size: 2rem;
+    font-size: 20px;
     font-weight: normal;
   }
   span {
